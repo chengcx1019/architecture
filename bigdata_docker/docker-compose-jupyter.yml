@@ -1,0 +1,13 @@
+hadoop-mysql:
+   image: jupyterbase
+   restart: always
+   tty: true
+   container_name: hadoop-jupyter
+   volumes:
+     - ./jupyterbase/data:/
+   net: zoo
+   environment:
+      - MYSQL_ROOT_PASSWORD=789012
+   ports: 
+     - "9312:9312"
+     - "9313:9313"
