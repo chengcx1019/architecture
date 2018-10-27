@@ -23,7 +23,7 @@ RUN echo "export SPARK_HOME=/home/hadoop/spark" >> /home/hadoop/.profile
 RUN echo "export SPARK_HOME=/home/hadoop/spark" >> /home/hadoop/.bashrc
 
 
-ENV SPARK_HOME=/usr/local/spark
+ENV SPARK_HOME=/home/hadoop/spark
 ENV PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin:.
 
 RUN chown hadoop /home/hadoop/*
