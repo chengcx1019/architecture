@@ -1,6 +1,7 @@
 bigdata_docker/*/deps
 bigdata_docker/mysqlbase/data/*
 DataX/*
+bigdata_docker/zookeeperbase/*/version-2/*
 # Created by .ignore support plugin (hsz.mobi)
 ### Example user template template
 ### Example user template
