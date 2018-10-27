@@ -9,12 +9,16 @@ RUN tar -zxf apache-hive-3.1.0-bin.tar.gz  && \
      mv apache-hive-3.1.0-bin hive && \
      rm apache-hive-3.1.0-bin.tar.gz
 
+RUN chown hadoop hive -R
+
 RUN tar -zxf mysql-connector-java-5.1.39.tar.gz  && \
     mv mysql-connector-java-5.1.39/mysql-connector-java-5.1.39-bin.jar $HIVE_HOME/lib/ && \
     rm -rf mysql-connector-java-5.1.39 && \
     rm mysql-connector-java-5.1.39.tar.gz
 
 RUN mkdir -p /home/hadoop/data/hive/warehouse && mkdir -p /home/hadoop/data/hive/log
+
+RUN chown hadoop data -R
 
 ENV PATH=$PATH:$HIVE_HOME/bin
 

@@ -1,0 +1,42 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                 "channel": 3
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "123456",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "select id,title from css3template_blog_blogpost where id < 10;"
+                                ],
+                                "jdbcUrl": [
+                                  "jdbc:mysql://bad_ip:3306/database",
+                                  "jdbc:mysql://127.0.0.1:bad_port/database",
+                                  "jdbc:mysql://202.204.60.252:3306/blog"
+                                ]
+                            }
+                        ]
+                    }
+                },
+               "writer": {
+                    "name": "streamwriter",
+                    "parameter": {
+                        "print":true
+                    }
+                }
+            }
+        ]
+    }
+}

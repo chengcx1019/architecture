@@ -1,0 +1,45 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                 "channel": 3
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "123456",
+                        "column": [
+                            "id",
+                            "title"
+                        ],
+                        "splitPk": "id",
+                        "connection": [
+                            {
+                                "table": [
+                                    "css3template_blog_blogpost"
+                                ],
+                                "jdbcUrl": [
+     "jdbc:mysql://202.204.60.252:3306/blog"
+                                ]
+                            }
+                        ]
+                    }
+                },
+               "writer": {
+                    "name": "streamwriter",
+                    "parameter": {
+                        "print":true
+                    }
+                }
+            }
+        ]
+    }
+}

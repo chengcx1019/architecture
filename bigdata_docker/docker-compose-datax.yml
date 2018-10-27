@@ -1,0 +1,7 @@
+hadoop-datax:
+   image: dataxbase
+   tty: true
+   container_name: hadoop-datax
+   volumes:
+     - ./dataxbase/tasks:/home/hadoop/tasks
+   net: zoo

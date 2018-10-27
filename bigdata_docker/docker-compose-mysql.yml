@@ -1,0 +1,12 @@
+hadoop-mysql:
+   image: mysql:5.7
+   restart: always
+   tty: true
+   container_name: hadoop-mysql
+   volumes:
+     - ./mysqlbase/data:/var/lib/mysql
+   net: zoo
+   environment:
+      - MYSQL_ROOT_PASSWORD=789012
+   ports: 
+     - "3306:3306"

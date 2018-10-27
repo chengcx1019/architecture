@@ -1,0 +1,52 @@
+hadoop-slave1:
+   image: hbasebase
+   tty: true
+   container_name: hadoop-slave1
+   volumes:
+     - ./hadoopbase/conf:/home/hadoop/hadoop/etc/hadoop
+     - ./hivebase/conf:/home/hadoop/hive/conf
+     - ./sparkbase/conf:/home/hadoop/spark/conf
+     - ./hbasebase/conf:/home/hadoop/hbase/conf
+   net: zoo
+hadoop-slave2:
+   image: hbasebase
+   tty: true
+   container_name: hadoop-slave2
+   volumes:
+     - ./hadoopbase/conf:/home/hadoop/hadoop/etc/hadoop
+     - ./hivebase/conf:/home/hadoop/hive/conf
+     - ./sparkbase/conf:/home/hadoop/spark/conf
+     - ./hbasebase/conf:/home/hadoop/hbase/conf
+   net: zoo
+hadoop-slave3:
+   image: hbasebase
+   tty: true
+   container_name: hadoop-slave3
+   volumes:
+     - ./hadoopbase/conf:/home/hadoop/hadoop/etc/hadoop
+     - ./hivebase/conf:/home/hadoop/hive/conf
+     - ./sparkbase/conf:/home/hadoop/spark/conf
+     - ./hbasebase/conf:/home/hadoop/hbase/conf
+   net: zoo
+hadoop-master:
+   image: hbasebase
+   tty: true
+   container_name: hadoop-master
+   volumes:
+     - ./hadoopbase/conf:/home/hadoop/hadoop/etc/hadoop
+     - ./hivebase/conf:/home/hadoop/hive/conf
+     - ./sparkbase/conf:/home/hadoop/spark/conf
+     - ./hbasebase/conf:/home/hadoop/hbase/conf
+   net: zoo
+   #command: bash /home/hadoop/hadoop/bin/hdfs namenode -format -y && sh /home/hadoop/hadoop/sbin/start-all.sh -yes && sh /home/hadoop/spark/sbin/start-all.sh && sh /home/hadoop/hbase/bin/start-hbase.sh && ping localhost > /dev/null
+   ports:
+     - "50070:50070"
+     - "9083:9083"
+     - "8088:8088"
+     - "8080:8080"
+     - "8042:8042"
+     - "16010:16010"
+   links:
+     - hadoop-slave1
+     - hadoop-slave2
+     - hadoop-slave3

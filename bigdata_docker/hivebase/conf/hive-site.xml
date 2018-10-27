@@ -47,12 +47,12 @@
   </property>
   <property>
     <name>hive.exec.local.scratchdir</name>
-    <value>/works/hive/</value>
+    <value>/home/hadoop/data/hive/</value>
     <description>Local scratch space for Hive jobs</description>
   </property>
   <property>
     <name>hive.downloaded.resources.dir</name>
-    <value>/works/hive/${hive.session.id}_resources</value>
+    <value>/home/hadoop/data/hive/${hive.session.id}_resources</value>
     <description>Temporary local directory for added resources in the remote file system.</description>
   </property>
   <property>
@@ -330,12 +330,17 @@
   </property>
   <property>
     <name>hive.metastore.warehouse.dir</name>
-    <value>/user/hive/warehouse</value>
+    <value>/home/hadoop/data/hive/warehouse</value>
     <description>location of default database for the warehouse</description>
   </property>
   <property>
+    <name>hive.metastore.local</name>
+    <value>false</value>
+    <description>controls whether to connect to remove metastore server or open a new metastore server in Hive Client JVM</description>
+  </property>
+  <property>
     <name>hive.metastore.uris</name>
-     <value>thrift://hadoop-master:9083</value> 
+     <value>thrift://hadoop-slave1:9083</value>
     <description>Thrift URI for the remote metastore. Used by metastore client to connect to remote metastore.</description>
   </property>
   <property>
@@ -387,7 +392,7 @@
 
   <property>
     <name>javax.jdo.option.ConnectionPassword</name>
-    <value>1234qwer</value>
+    <value>789012</value>
     <description>password to use against metastore database</description>
   </property>
 
@@ -697,7 +702,7 @@
       Allow JDO query pushdown for integral partition columns in metastore. Off by default. This
       improves metastore perf for integral columns, especially if there's a large number of partitions.
       However, it doesn't work correctly with integral values that are not normalized (e.g. have
-      leading zeroes, like 0012). If metastore direct SQL is enabled and works, this optimization
+      leading zeroes, like 0012). If metastore direct SQL is enabled and home/hadoop/data, this optimization
       is also irrelevant.
     </description>
   </property>
@@ -1046,7 +1051,7 @@
     <name>hive.mapjoin.optimized.hashtable</name>
     <value>true</value>
     <description>
-      Whether Hive should use memory-optimized hash table for MapJoin. Only works on Tez,
+      Whether Hive should use memory-optimized hash table for MapJoin. Only home/hadoop/data on Tez,
       because memory-optimized hashtable cannot be serialized.
     </description>
   </property>
@@ -1193,7 +1198,7 @@
   </property>
   <property>
     <name>hive.querylog.location</name>
-    <value>/usr/hive/log</value>
+    <value>/home/hadoop/data/hive/log</value>
     <description>Location of Hive run time structured log file</description>
   </property>
   <property>
@@ -2732,7 +2737,7 @@
   </property>
   <property>
     <name>hive.server2.logging.operation.log.location</name>
-    <value>/works/hive/operation_logs</value>
+    <value>/home/hadoop/data/hive/operation_logs</value>
     <description>Top level directory where operation logs are stored if logging functionality is enabled</description>
   </property>
   <property>
@@ -2742,7 +2747,7 @@
   </property>
   <property>
     <name>hive.log4j.file</name>
-    <value>/usr/local/hive/conf/hive-log4j.properties</value>
+    <value>/home/hadoop/hive/conf/hive-log4j.properties</value>
     <description>
       Hive log4j configuration file.
       If the property is not set, then logging will be initialized using hive-log4j.properties found on the classpath.
@@ -2752,7 +2757,7 @@
   </property>
   <property>
     <name>hive.exec.log4j.file</name>
-    <value>/usr/local/hive/conf/hive-exec-log4j.properties</value>
+    <value>/home/hadoop/hive/conf/hive-exec-log4j.properties</value>
     <description>
       Hive log4j configuration file for execution mode(sub command).
       If the property is not set, then logging will be initialized using hive-exec-log4j.properties found on the classpath.
@@ -3614,5 +3619,27 @@
     <name>hive.spark.client.rpc.sasl.mechanisms</name>
     <value>DIGEST-MD5</value>
     <description>Name of the SASL mechanism to use for authentication.</description>
+  </property>
+
+  <property>
+    <name>datanucleus.fixedDatastore</name>
+    <value>false</value>
+  </property>
+  <property>
+    <name>datanucleus.autoCreateSchema</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>datanucleus.autoCreateTables</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>datanucleus.autoCreateColumns</name>
+    <value>true</value>
+  </property>
+  <property>
+    <name>datanucleus.schema.autoCreateAll</name>
+    <value>true</value>
+    <description>Auto creates necessary schema on a startup if one doesn't exist. Set this to false, after creating it once.To enable auto create also set hive.metastore.schema.verification=false. Auto creation is not recommended for production use cases, run schematool command instead.</description>
   </property>
 </configuration>

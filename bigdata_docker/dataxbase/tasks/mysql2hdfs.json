@@ -1,0 +1,98 @@
+{
+    "job": {
+        "setting": {
+            "speed": {
+                 "channel": 3
+            },
+            "errorLimit": {
+                "record": 0,
+                "percentage": 0.02
+            }
+        },
+        "content": [
+            {
+                "reader": {
+                    "name": "mysqlreader",
+                    "parameter": {
+                        "username": "root",
+                        "password": "123456",
+                        "connection": [
+                            {
+                                "querySql": [
+                                    "select id,title from css3template_blog_blogpost where id < 10;"
+                                ],
+                                "jdbcUrl": [
+                                  "jdbc:mysql://bad_ip:3306/database",
+                                  "jdbc:mysql://127.0.0.1:bad_port/database",
+                                  "jdbc:mysql://202.204.60.252:3306/blog"
+                                ]
+                            }
+                        ]
+                    }
+                },
+               "writer": {
+                    "name": "hdfswriter",
+                    "parameter": {
+                        "defaultFS": "hdfs://hadoop-master:7077",
+                        "fileType": "orc",
+                        "path": "/user/hive/warehouse/writerorc.db/orcfull",
+                        "fileName": "xxxx",
+                        "column": [
+                            {
+                                "name": "col1",
+                                "type": "TINYINT"
+                            },
+                            {
+                                "name": "col2",
+                                "type": "SMALLINT"
+                            },
+                            {
+                                "name": "col3",
+                                "type": "INT"
+                            },
+                            {
+                                "name": "col4",
+                                "type": "BIGINT"
+                            },
+                            {
+                                "name": "col5",
+                                "type": "FLOAT"
+                            },
+                            {
+                                "name": "col6",
+                                "type": "DOUBLE"
+                            },
+                            {
+                                "name": "col7",
+                                "type": "STRING"
+                            },
+                            {
+                                "name": "col8",
+                                "type": "VARCHAR"
+                            },
+                            {
+                                "name": "col9",
+                                "type": "CHAR"
+                            },
+                            {
+                                "name": "col10",
+                                "type": "BOOLEAN"
+                            },
+                            {
+                                "name": "col11",
+                                "type": "date"
+                            },
+                            {
+                                "name": "col12",
+                                "type": "TIMESTAMP"
+                            }
+                        ],
+                        "writeMode": "append",
+                        "fieldDelimiter": "\t",
+                        "compress":"NONE"
+                    }
+                }
+            }
+        ]
+    }
+}
