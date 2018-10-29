@@ -1,34 +1,44 @@
+<?xml version="1.0"?>
 <configuration>
+   <!--<property>-->
+            <!--<name>yarn.acl.enable</name>-->
+            <!--<value>0</value>-->
+    <!--</property>-->
 
-<!-- Site specific YARN configuration properties -->
+    <property>
+            <name>yarn.resourcemanager.hostname</name>
+            <value>hadoop-master</value>
+    </property>
+
+    <property>
+            <name>yarn.nodemanager.aux-services</name>
+            <value>mapreduce_shuffle</value>
+    </property>
 <property>
-<name>yarn.resourcemanager.hostname</name>
-<value>hadoop-master</value>
+        <name>yarn.nodemanager.resource.memory-mb</name>
+        <value>1024</value>
 </property>
 
 <property>
-<name>yarn.nodemanager.vmem-check-enabled</name>
-<value>false</value>
+        <name>yarn.scheduler.maximum-allocation-mb</name>
+        <value>1024</value>
 </property>
 
 <property>
-<name>yarn.nodemanager.hostname</name>
-<value>0.0.0.0</value>
+        <name>yarn.scheduler.minimum-allocation-mb</name>
+        <value>128</value>
 </property>
 
 <property>
-<name>yarn.nodemanager.aux-services</name>
-<value>mapreduce_shuffle</value> 
+        <name>yarn.nodemanager.vmem-check-enabled</name>
+        <value>false</value>
 </property>
- 
 <property>
-<name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
-<value>org.apache.hadoop.mapred.ShuffleHandler</value>
+        <name>yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage</name>
+        <value>99</value>
 </property>
-
 <property>
-<name>yarn.resourcemanager.scheduler.class</name>
-<value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler</value>
+        <name>yarn.nodemanager.pmem-check-enabled</name>
+        <value>false</value>
 </property>
-
 </configuration>

@@ -4,12 +4,19 @@
 function build {
     echo ">> build all ..."
     cd scalabase && ./build.sh && cd -
+    sleep 5
     cd zookeeperbase && ./build.sh && cd -
+    sleep 5
     cd hadoopbase && ./build.sh && cd -
+    sleep 5
     cd hivebase && ./build.sh && cd -
+    sleep 5
     cd sparkbase && ./build.sh && cd -
+    sleep 5
     cd hbasebase && ./build.sh && cd -
+    sleep 5
     cd dataxbase && ./build.sh && cd -
+    sleep 5
 }
 
 if [[ $1 = "build" ]]; then

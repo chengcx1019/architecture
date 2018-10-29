@@ -30,4 +30,4 @@ COPY config/id_rsa.pub /home/hadoop/.ssh/id_rsa.pub
 COPY config/id_rsa /home/hadoop/.ssh/id_rsa
 RUN cat /home/hadoop/.ssh/id_rsa.pub >> /home/hadoop/.ssh/authorized_keys
 RUN chown hadoop .ssh -R
-RUN chmod 400 /home/hadoop/.ssh/id_rsa
+#RUN chmod 600 /home/hadoop/.ssh/id_rsa

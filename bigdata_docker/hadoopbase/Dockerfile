@@ -15,8 +15,8 @@ RUN echo "export HADOOP_HOME=/home/hadoop/hadoop" >> /home/hadoop/.profile
 RUN echo "export HADOOP_HOME=/home/hadoop/hadoop" >> /home/hadoop/.bashrc
 RUN echo "export PATH=\$HADOOP_HOME/bin:\$HADOOP_HOME/sbin:\$PATH" >> /home/hadoop/.profile
 RUN echo "export PATH=\$HADOOP_HOME/bin:\$HADOOP_HOME/sbin:\$PATH">> /home/hadoop/.bashrc
-RUN mkdir -p /data/nameNode /data/dataNode /data/namesecondary /data/tmp
-RUN chown hadoop /data/nameNode /data/dataNode /data/namesecondary /data/tmp
+RUN mkdir -p /data/nameNode /data/dataNode /data/nameSecondary /data/tmp
+RUN chown hadoop /data/nameNode /data/dataNode /data/nameSecondary /data/tmp
 
 
 

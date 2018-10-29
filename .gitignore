@@ -2,6 +2,9 @@ bigdata_docker/*/deps
 bigdata_docker/mysqlbase/data/*
 DataX/*
 bigdata_docker/zookeeperbase/*/version-2/*
+bigdata_docker/scalabase/config/id_rsa
+bigdata_docker/scalabase/config/id_rsa.pub
+
 # Created by .ignore support plugin (hsz.mobi)
 ### Example user template template
 ### Example user template

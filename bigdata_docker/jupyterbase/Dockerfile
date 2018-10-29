@@ -22,8 +22,8 @@ RUN /bin/bash -c "source /etc/profile \
 	&& pyenv global 3.5.6 \
 	&& pyenv virtualenv 3.5.6 spark \
 	&& pyenv global spark \
-	&& pip install -r /requirementtxt /"
-rm requirement.txt
+	&& pip install -r requirement.txt"
+RUN rm requirement.txt
 RUN apt-get purge -y --auto-remove $build_deps
 
 # pyenv
@@ -31,12 +31,12 @@ RUN chown hadoop /.pyenv -R
 RUN cat /etc/profile.d/pyenv.sh | tee -a /home/hadoop/.profile
 RUN cat /etc/profile.d/pyenv.sh | tee -a /home/hadoop/.bashrc
 
-RUN mkdir -p devlop/data
-RUN chown hadoop devlop -R
- "nohup jupyter notebook --ip hadoop-jupyter --port 9312 &"
+RUN mkdir -p /home/hadoop/devlop/data
+RUN chown hadoop /home/hadoop/devlop -R
+RUN echo "nohup jupyter notebook --ip hadoop-jupyter --port 9312 &" >> /home/hadoop/devlop/start.sh
+RUN chmod +x /home/hadoop/devlop/start.sh
 
-RUN /bin/bash -c "su hadoop \
-    && source /home/hadoop/.bashrc\
+RUN /bin/bash -c "source /home/hadoop/.bashrc\
 	&& pyenv global spark\
 	&& cd /home/hadoop/deploy \
-	&& nohup jupyter notebook --ip hadoop-jupyter --port 9312 &"
+	&& ./start.sh"
