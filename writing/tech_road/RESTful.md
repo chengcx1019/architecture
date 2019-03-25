@@ -27,3 +27,7 @@ $ curl -X POST -d username=new -d email=new@example.com -d is_staff=false -H 'Ac
 
 ```
 
+
+
+- [ ] 如果是获取某一类资源按条件筛选的部分实体，在restful中应该如何表达：比如筛选出属于某个实验的所有仿真
+- [ ] 

@@ -79,9 +79,40 @@
 
 
 
+## 注意
 
+### String
 
+- 字符串前面添加u,r,b的作用
+  - u:表示unicode
+  - r:表示非转义的原始字符串，如出现r'\n',不转换为换行而只解析为两个字符
+  - b:表示bytes
 
+### Django新特性更新
+
+>关注django版本的更新，持续更细
+
+#### note 2.0
+
+[文档](https://docs.djangoproject.com/en/2.1/releases/2.0/)
+
+- 简化url路由语法
+
+  添加`django.urls.path`,更简单和更易读的url路由语法
+
+  from:
+
+  `url(r'^articles/(?P<year>[0-9]{4})/$', views.year_archive),`
+
+  to:
+
+  `path('articles/<int:year>/', views.year_archive),`，支持强制类型的url参数
+
+   `django.conf.urls.url`转变为 [`django.urls.re_path`](https://docs.djangoproject.com/en/2.1/ref/urls/#django.urls.re_path)
+
+  
+
+  
 
 ## 参考
 
