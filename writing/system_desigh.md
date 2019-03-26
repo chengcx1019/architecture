@@ -1402,7 +1402,13 @@ https://wizardforcel.gitbooks.io/think-os/content/ch11.html
 - web service
 
   - REST，SOAP
+
+    > 在编程中，一个幂等操作的特点是任意多次执行所产生的影响与一次执行的影响相同；幂等函数或幂等方法是指可以用相同方法重复运行，并能获得相同结果的函数。
+
+    - REST强调简单的数据格式，使用url来标示资源，并使用http功能进行缓存控制，身份验证和内容协商
+
   - RPC
+
   - 异步消息传递
 
 ### 第二部分：分布式数据
