@@ -20,7 +20,9 @@
 
 - 删除文件
 
-  - `git rm —cached` 只移除暂存区文件，保留工作区文件
+  - `git rm —cached` 从仓库中移除文件，但保留工作区文件即保留在本地是未添加状态
+    - `git rm —cached filename`
+    - `git rm —cached -r dirname`
 
 - 提交历史
   - `git log -p` 显示每次提交的变更
