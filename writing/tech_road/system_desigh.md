@@ -1907,6 +1907,116 @@ docker构建spark环境
 
 
 
+#### Docker核心技术与实现原理
+
+- 命名空间 (namespaces)
+
+  运行在同一台机器上的不同服务能做到**完全隔离**，就像运行在多台不同的机器上一样。
+
+  命名空间为新创建的进程隔离了文件系统、网络，并与宿主机器之间的进程相互隔离
+
+  - 进程
+
+  - 网络
+
+    - Host
+
+    - Container
+
+    - None
+
+    - Bridge
+
+      当 Docker 服务器在主机上启动之后会创建新的虚拟网桥 docker0，随后在该主机上启动的全部服务在默认情况下都与该网桥相连
+
+      - libnetwork
+
+        提供了一个连接不同容器的实现，同时也为应用给出一个能够提供一致的编程接口和网络层抽象的容器网络模型
+
+        - Sandbox
+
+          存储着当前容器的网络栈配置，包括容器的接口、路由表和 DNS 设置，Linux 使用网络命名空间实现这个 Sandbox，每一个 Sandbox 中都可能会有一个或多个 Endpoint，在 Linux 上就是一个虚拟的网卡 veth，Sandbox 通过 Endpoint 加入到对应的网络中，这里的网络可能就是我们在上面提到的 Linux 网桥或者 VLAN
+
+        - Endpoint
+
+        - Network
+
+  - 挂载点
+
+- 控制组（CGroups）
+
+  命名空间不能提供物理资源上的隔离，比如CPU或者内存
+
+- UnionFS（存储驱动）
+
+  后来改到AUFA，目前采用overlay2取代了aufs成为了推荐的存储驱动
+
+  把多个文件系统『联合』到同一个挂载点的文件系统服务
+
+  docker的镜像是如何组织的：每一层镜像都建立在另一层镜像之上，并且镜像都是只读的，每当基于一个镜像新建一个容器时，等于在镜像的最上层添加一个可以读写的层。
+
+- reference
+
+  https://draveness.me/docker
+
+
+
+
+
+#### Docker入门与实践
+
+> mac版的docker网络配置，mac版封装好了用xhyve创建的虚拟机，这台虚拟机才是docker的宿主机。
+
+https://yq.aliyun.com/articles/40494?spm=a2c4e.11153959.teamhomeleft.95.44ab18b1OELKiS
+
+[mac的例外之处](https://docs.docker.com/docker-for-mac/networking/#use-cases-and-workarounds)
+
+宿主机无法直接和容器互ping，但是可以进行端口xport映射，从而通过localhost:xport访问容器内的服务
+
+- docker run -d -it --rm ubuntu bash 
+
+  - `-it`：这是两个参数，一个是 `-i`：交互式操作，一个是 `-t` 终端。我们这里打算进入 `bash` 执行一些命令并查看返回结果，因此我们需要交互式终端。
+  - `--rm`：这个参数是说容器退出后随之将其删除。默认情况下，为了排障需求，退出的容器并不会立即删除，除非手动 `docker rm`。我们这里只是随便执行个命令，看看结果，不需要排障和保留结果，因此使用 `--rm` 可以避免浪费空间。
+
+  - -d:此时容器会在后台运行并不会把输出的结果 (STDOUT) 打印到宿主机上面(输出结果可以用 `docker logs`查看)
+
+- docker commit
+
+- ```bash
+  docker commit \
+      --author "Changxin Cheng <chengcx1019@gmail.com>" \
+      --message "添加了pyspark，可通过python接口调用spark服务" \
+      nodemaster \
+      sparkbase:v2
+  ```
+
+- docker build .  --no-cache -t {image_name}
+
+  - `-t`:镜像的命名和可选的tag标签可以以 'name:tag' 这种形式
+  - `.`:代表当前上下文环境，docker引擎会打包上下文内的所有文件进行镜像构建
+
+- docker system df
+
+  查看镜像、容器、数据卷所占用的空间
+
+- docker exec -i -t bash 
+
+##### compose
+
+`docker-compose`
+
+
+
+先用docker搭一个zookeeper集群吧
+
+容器存储层的生存周期和容器一样，容器消亡时，容器存储层也随之消亡。因此，任何保存于容器存储层的信息都会随容器删除而丢失。
+
+
+
+
+
+
+
 ## spark和hadoop
 
 ### spark
