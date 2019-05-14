@@ -18,6 +18,10 @@
 
 ## Docker
 
+### docker部署项目
+
+docker network create
+
 ### Docker 介绍及安装
 
 ```
@@ -202,7 +206,13 @@ https://yq.aliyun.com/articles/40494?spm=a2c4e.11153959.teamhomeleft.95.44ab18b1
 
   查看镜像、容器、数据卷所占用的空间
 
-- docker exec -i -t bash 
+- docker exec
+
+  在container内运行指令
+
+  - docker exec -it {container-hash} bash 
+
+- docker logs {container-hash}
 
 ##### compose
 
@@ -256,3 +266,83 @@ https://www.jotform.com/blog/how-to-backup-mysql-database/
 [jenkins docker](https://github.com/jenkinsci/docker/blob/master/README.md)
 
 3c5868f0fabe4691b91e35d5cfcf6111
+
+先部署，再docker化，不然你不知道是引入docker产生的问题，还是本身的问题
+
+
+
+ubuntu install mysql nginx:
+
+mysql无法远程连接:
+
+```sql
+CREATE USER 'blogcx'@'localhost' IDENTIFIED BY '789012';
+
+GRANT ALL PRIVILEGES ON *.* TO 'blogcx'@'localhost' WITH GRANT OPTION;
+
+CREATE USER 'blogcx'@'%' IDENTIFIED BY '789012';
+
+GRANT ALL PRIVILEGES ON *.* TO 'blogcx'@'%' WITH GRANT OPTION;
+
+FLUSH PRIVILEGES;
+```
+
+自动化流程包括：
+
+创建数据库blogcx；
+
+导入最新备份的sql文件；（同时也引入了定时备份的任务及sql数据的存储）
+
+
+
+**构建前端**
+
+- 安装环境
+  - apt-get update
+  - apt-get install nodejs
+  - apt-get install npm
+
+npm install
+
+npm run build
+
+npm install chromedriver --chromedriver_cdnurl=http://cdn.npm.taobao.org/dist/chromedriver
+
+npm i -D webpack-cli
+
+**收集静态文件**
+
+每一次前端重新构建之后，都需要重新启动uwsgi，重新收集静态文件(一种快速的检验方式是vue构建的dist中index页面中引入的静态文件是否和stayic目录里的编码一致)
+
+python manage.py collectstatic
+
+ 
+
+**启动**
+
+```sh
+ps aux | grep uwsgi | awk '{print $2}' | xargs kill -9 
+```
+
+Restart nginx:`sudo nginx -s stop && sudo nginx`
+
+
+
+建立log文件夹
+
+修改server端口时，同时需要修改vue的store请求base_url
+
+**sentry监控网络状态**
+
+
+
+**bug**:
+
+进入详情页后mathjax没有渲染
+
+https
+
+## redis
+
+监控redis运行状态：redis-cli -h localhost -p ${port} monitor 
+

@@ -4,9 +4,11 @@
 
 ### 注释提交规范
 
-
+squash
 
 ## git用法
+
+diff的起点是两个分支的公共父节点（即commit）
 
 ### 基本用法
 
@@ -176,3 +178,6 @@
 
 
 
+### others
+
+两个共同历史的分支进行合并:git pull origin branchname --allow-unrelated-histories

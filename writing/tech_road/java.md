@@ -161,7 +161,7 @@ Collections.sort(words,
 
 1. 需要实例化抽象类
 2. 需要实现好几个抽象方法
-3. 
+3. This的指向不同，在lambda函数中，this指向包含它的实例，而匿名类指向自己
 
 第43条：方法引用优先于Lambda  
 

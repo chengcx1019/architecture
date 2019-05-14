@@ -1,6 +1,14 @@
-> 用于追踪新版本更新的变更。
+> 用于追踪新版本更新的变更，进行必要解读，重要的不是记录，而是能够心中有数。
+>
+> 在第一章节文档汇总记录所有的文档
 
 比如python 3.6 to python 3.7
+
+## 文档汇总
+
+[paramiko](http://docs.paramiko.org/en/2.4/api/client.html)
+
+## python更新
 
 ## Django新特性更新
 
@@ -26,4 +34,14 @@
 
   
 
-  
+## jupyterlab
+
+[JupyterLab Changelog](https://jupyterlab.readthedocs.io/en/stable/getting_started/changelog.html#changelog)
+
+### jupyter extension
+
+```
+pip install jupyter_contrib_nbextensions && jupyter contrib nbextension install 
+```
+
+https://towardsdatascience.com/jupyter-notebook-extensions-517fa69d2231
