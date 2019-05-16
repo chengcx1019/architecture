@@ -630,7 +630,7 @@ SVM原理及细节，SVM和树模型的异同以及优缺点和局限性。
         while start*2 < m and start*2 <n:
             print_circle(nums, m, n, start, result)
             start += 1
-            
+     
     def print_circle(nums, m, n, start, result):
         row = m - start*2
         col = n - start*2
@@ -662,9 +662,9 @@ SVM原理及细节，SVM和树模型的异同以及优缺点和局限性。
         for num in nums:
             if curr < 0:
                 curr = num
-            else:
+             else:
                 curr += num
-            ret = max(ret, curr)
+             ret = max(ret, curr)
     ```
 
   - 最长公共字串,输出最长子串长度并返回最长子串
