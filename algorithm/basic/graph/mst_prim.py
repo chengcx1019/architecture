@@ -55,15 +55,7 @@ class MSTPrim(object):
             self.in_queue[mini_node_key] = False
             curren_node = self.graph.nodes[mini_node_key]
             # 清除u剩余的邻接节点权重
-            key_ = self.pred[curren_node.key]
-            if key_>-1:
-                pre_node = self.graph.nodes[key_]
-                for node in pre_node.adj_nodes.values():
-                    key = node.key
-                    if self.in_queue[key]:
-                        self.keys[key]=sys.maxsize
-                        self.pred[key]=-1
-                        self.priority_queue.decrease_key(key, self.keys[key])
+            self.clear_pre_node_weight(curren_node)
 
             for node in curren_node.adj_nodes.values():
                 if self.in_queue[node.key]:
@@ -74,6 +66,17 @@ class MSTPrim(object):
                         self.priority_queue.decrease_key(node.key, weight)
             self.result.append(curren_node.key)
         print(self.result)
+
+    def clear_pre_node_weight(self, curren_node):
+        pre_key = self.pred[curren_node.key]
+        if pre_key > -1:
+            pre_node = self.graph.nodes[pre_key]
+            for node in pre_node.adj_nodes.values():
+                key = node.key
+                if self.in_queue[key]:
+                    self.keys[key] = sys.maxsize
+                    self.pred[key] = -1
+                    self.priority_queue.decrease_key(key, self.keys[key])
 
 
 if __name__ == '__main__':

@@ -38,7 +38,7 @@ class Queue(object):
         else:
             self.head = self.head.next
         return data
-
+# TODO: 优先队列的各种实现方式 （数组，堆（斐波那契堆） changxin.cheng@nio.com
 
 if __name__ == '__main__':
     pass
