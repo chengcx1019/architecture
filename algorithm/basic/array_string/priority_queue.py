@@ -38,6 +38,9 @@ class PriorityQueue(object):
         return self.array[-1]
 
     def extract_min(self):
+        """
+        选择最小元素并出队
+        """
         if not self.array:
             return None
         minimum = sys.maxsize
@@ -48,6 +51,9 @@ class PriorityQueue(object):
         return self.array.pop(mini_index)
 
     def decrease_key(self, obj, new_key):
+        """
+        更新节点的权重
+        """
         for node in self.array:
             if node.obj is obj:
                 node.key = new_key
