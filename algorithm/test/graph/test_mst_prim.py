@@ -21,7 +21,7 @@ class TestMSTPrim(unittest.TestCase):
     def setUp(self):
         self.graph = Graph()
 
-        self.option = 1
+        self.option = 2
         if self.option == 1:
             edges = [(0, 1, 2), (0, 4, 4),
                      (1, 2, 3),
@@ -29,10 +29,12 @@ class TestMSTPrim(unittest.TestCase):
                      (3, 0, 8),
                      (4, 3, 7)]
         elif self.option == 2:
-            edges = []
+            edges = [(0,1,1),(0,2,2),
+                     (1,2,4),(1,3,3),
+                     (2,3,5)]
 
         for edge in edges:
-            self.graph.add_edge(edge[0], edge[1], weight=edge[2])
+            self.graph.add_undirected_edge(edge[0], edge[1], weight=edge[2])
 
         self.mst_prim = MSTPrim(self.graph)
 
@@ -46,6 +48,6 @@ class TestMSTPrim(unittest.TestCase):
             self.assertEqual(self.mst_prim.pred[4], 2)
 
         elif self.option == 2:
-            pass
+            self.mst_prim.mst_prim(0)
 if __name__ == '__main__':
     pass
