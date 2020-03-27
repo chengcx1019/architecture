@@ -12,11 +12,12 @@ import sys
 from basic.graph.graph import Graph
 from basic.array_string.priority_queue import PriorityQueue, PriorityQueueNode
 """
+定义定点集合V，边集合E
 最小生成树算法
 无向连通图中寻找一个边的子集ST，即寻找边的权值总和最小的连通子图
 为每个节点选择权重最小的前继节点
 
-算法概述：选定顶点集合S和边集T，初始随机旋转s进入S，之后从所有变种选择权值最小的边(u,v)[满足u in S且v in V-S]放入T中，
+算法概述：选定顶点集合S和边集T，初始随机选择s进入S，之后从所有边中选择权值最小的边(u,v)[满足u in S且 v in V-S] 放入 T 中，
 同时将v放入S中，直到取出所有顶点至S停止。
 """
 
