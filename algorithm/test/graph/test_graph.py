@@ -32,7 +32,7 @@ class TestGraph(unittest.TestCase):
         graph.add_edge(5, 4, weight=8)
         graph.add_edge(5, 2, weight=9)
 
-        self.assertEqual(graph.nodes[0].adj_weights[graph.nodes[1].key], 5)
+        self.assertEqual(graph.nodes[0].adj_weights[graph.nodes[5].key], 2)
 
 if __name__ == '__main__':
     unittest.main()

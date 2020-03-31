@@ -7,7 +7,13 @@
 @file: avl.py
 @time: 2018/5/16 21:17
 """
+"""
+1. 本身首先是一棵二叉搜索树
+2. 带有平衡条件：每个非叶子节点左右子树的高度之差的绝对值（平衡因子）最多为1.
+"""
+
 from collections import deque
+
 
 class AVLNode(object):
 
@@ -17,7 +23,7 @@ class AVLNode(object):
         self.right = None
         self.height = 0
 
-    def compare_to (self, value):
+    def compare_to(self, value):
         """
         Returns 0 if equal, negative if smaller and positive if greater.
         Suitable for overriding.
@@ -99,20 +105,19 @@ class AVLNode(object):
             self.left = self.add_to_subtree(self.left, data)
             if self.height_difference() == 2:
                 if self.left.compare_to(data) >= 0:
-                    new_root = self.rotate_right() # LL
+                    new_root = self.rotate_right()  # LL
                 else:
-                    new_root = self.rotate_left_right() # LR
+                    new_root = self.rotate_left_right()  # LR
         else:
             self.right = self.add_to_subtree(self.right, data)
             if self.height_difference() == -2:
                 if self.right.compare_to(data) < 0:
-                    new_root = self.rotate_left() # RR
+                    new_root = self.rotate_left()  # RR
                 else:
-                    new_root = self.rotate_right_left() # RL
+                    new_root = self.rotate_right_left()  # RL
 
         new_root.compute_height()
         return new_root
-
 
     def remove_from_parent(self, parent, data):
         if parent:
@@ -123,7 +128,7 @@ class AVLNode(object):
         new_root = self
         rs = self.compare_to(data)
         if rs == 0:
-            if self.left is None: # 若目标节点有左子节点，则左子节点赋值目标节点
+            if self.left is None:  # 若目标节点有左子节点，则左子节点赋值目标节点
                 return self.right
 
             child = self.left
@@ -157,8 +162,7 @@ class AVLNode(object):
         new_root.compute_height()
         return new_root
 
-
-    def new_node (self, data):
+    def new_node(self, data):
         """Return new Binary Node, amenable to subclassing."""
         return AVLNode(data)
 
@@ -213,7 +217,7 @@ class AVLNode(object):
 
         return True
 
-    def in_order (self):
+    def in_order(self):
         """In order traversal generator of tree rooted at given node."""
         if self.left:
             for n in self.left.in_order():
@@ -234,7 +238,7 @@ class AVLNode(object):
 
         if self.right:
             for n in self.right.pre_order():
-                yield  n
+                yield n
 
     def post_order(self):
 
@@ -244,7 +248,7 @@ class AVLNode(object):
 
         if self.right:
             for n in self.right.post_order():
-                yield  n
+                yield n
 
         yield self.data
 
@@ -260,7 +264,7 @@ class AVLNode(object):
             if node.right:
                 queue.append(node.right)
 
-    def __repr__ (self):
+    def __repr__(self):
         """Useful debugging function to produce linear tree representation."""
         leftS = ''
         rightS = ''
@@ -271,13 +275,12 @@ class AVLNode(object):
         return "(L:" + leftS + " " + str(self.value) + " R:" + rightS + ")"
 
 
-
 class AVLTree(object):
 
     def __init__(self):
         self.root = None
 
-    def __repr__ (self):
+    def __repr__(self):
         if self.root is None:
             return "avl:()"
         return "avl:" + str(self.root)
@@ -314,7 +317,7 @@ class AVLTree(object):
                 return True
 
         return False
-    
+
 
 if __name__ == '__main__':
     avl = AVLTree()

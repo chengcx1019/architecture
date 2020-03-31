@@ -176,7 +176,7 @@ class RobotCoinCollect(object):
         self.find_path(count_coin, path, n-1, m-1)
         return count_coin[n-1][m-1]
 
-    def find_path(self, count_coin, path: list, n, m):
+    def find_path(self, count_coin, path:list, n, m):
         if m == 0 and n == 0:
             return
         if m >= 1 and n >= 1:
