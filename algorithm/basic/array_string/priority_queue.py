@@ -44,6 +44,7 @@ class PriorityQueue(object):
         if not self.array:
             return None
         minimum = sys.maxsize
+        mini_index = 0
         for index, node in enumerate(self.array):
             if node.key < minimum:
                 minimum = node.key
